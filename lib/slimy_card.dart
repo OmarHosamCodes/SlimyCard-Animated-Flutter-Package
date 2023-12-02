@@ -35,6 +35,9 @@ class SlimyCard extends StatefulWidget {
   final Widget bottomCardWidget;
   final bool slimeEnabled;
   final void Function()? onTap;
+  final Color arrowColor;
+  final Color arrowContainerColor;
+  final Color slimeColor;
 
   SlimyCard({
     this.color = const Color(0xff5858FF),
@@ -46,6 +49,9 @@ class SlimyCard extends StatefulWidget {
     this.bottomCardWidget = const Center(),
     this.slimeEnabled = true,
     this.onTap,
+    this.arrowColor = const Color.fromRGBO(0, 0, 0, 1),
+    this.arrowContainerColor = const Color.fromRGBO(255, 255, 255, 1),
+    this.slimeColor = const Color(0xff5858FF),
   })  : assert(topCardHeight >= 150, 'Height of Top Card must be atleast 150.'),
         assert(bottomCardHeight >= 100,
             'Height of Bottom Card must be atleast 100.'),
@@ -184,7 +190,7 @@ class _SlimyCardState extends State<SlimyCard> with TickerProviderStateMixin {
                         Container(
                           child: FlareActor(
                             'packages/slimy_card/assets/flare/bottomSlime.flr',
-                            color: widget.color
+                            color: widget.slimeColor
                                 .withOpacity((widget.slimeEnabled) ? 1 : 0),
                             animation: activeAnimation,
                             sizeFromArtboard: true,
@@ -253,10 +259,11 @@ class _SlimyCardState extends State<SlimyCard> with TickerProviderStateMixin {
                   width: 50,
                   child: RotationTransition(
                     turns: arrowAnimation,
-                    child: Icon(Icons.keyboard_arrow_down, color: Colors.black),
+                    child: Icon(Icons.keyboard_arrow_down,
+                        color: widget.arrowColor),
                   ),
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: widget.arrowContainerColor,
                     borderRadius: BorderRadius.circular(15),
                     boxShadow: [
                       BoxShadow(

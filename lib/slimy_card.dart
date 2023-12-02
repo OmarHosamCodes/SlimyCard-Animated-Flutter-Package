@@ -146,7 +146,7 @@ class _SlimyCardState extends State<SlimyCard> with TickerProviderStateMixin {
         setState(() {
           action();
         });
-        widget.onTap!();
+        widget.onTap!.call();
       },
       child: Container(
         child: Stack(

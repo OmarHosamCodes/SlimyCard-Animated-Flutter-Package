@@ -47,6 +47,7 @@ class _HomePageState extends State<HomePage> {
 
               // SlimyCard is being called here.
               SlimyCard(
+                onTap: () => print('Tap'),
                 // In topCardWidget below, imagePath changes according to the
                 // status of the SlimyCard(snapshot.data).
                 topCardWidget: topCardWidget((snapshot.data)

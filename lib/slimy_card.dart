@@ -34,6 +34,7 @@ class SlimyCard extends StatefulWidget {
   final Widget topCardWidget;
   final Widget bottomCardWidget;
   final bool slimeEnabled;
+  final void Function()? onTap;
 
   SlimyCard({
     this.color = const Color(0xff5858FF),
@@ -44,6 +45,7 @@ class SlimyCard extends StatefulWidget {
     this.topCardWidget = const Center(),
     this.bottomCardWidget = const Center(),
     this.slimeEnabled = true,
+    this.onTap,
   })  : assert(topCardHeight >= 150, 'Height of Top Card must be atleast 150.'),
         assert(bottomCardHeight >= 100,
             'Height of Bottom Card must be atleast 100.'),
@@ -69,7 +71,6 @@ class _SlimyCardState extends State<SlimyCard> with TickerProviderStateMixin {
   late String activeAnimation;
   late Widget topCardWidget;
   late Widget bottomCardWidget;
-
   late Animation<double> arrowAnimation;
   late AnimationController arrowAnimController;
 
@@ -145,6 +146,7 @@ class _SlimyCardState extends State<SlimyCard> with TickerProviderStateMixin {
         setState(() {
           action();
         });
+        widget.onTap!();
       },
       child: Container(
         child: Stack(
@@ -272,22 +274,6 @@ class _SlimyCardState extends State<SlimyCard> with TickerProviderStateMixin {
       ),
     );
   }
-}
-
-/// `simpleTextWidget` is a place-holder Widget that can be replaced with
-/// `topCardWidget` & `bottomCardWidget`.
-
-Widget simpleTextWidget(String text) {
-  return Center(
-    child: Text(
-      text,
-      style: TextStyle(
-        color: Colors.white,
-        fontSize: 12,
-        fontWeight: FontWeight.w500,
-      ),
-    ),
-  );
 }
 
 /// This is stream(according to BLoC) which enables to update real-time status

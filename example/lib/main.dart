@@ -3,20 +3,14 @@ import 'package:flutter/services.dart';
 import 'package:slimy_card/slimy_card.dart';
 
 void main() {
-  //Don't worry about these codes here, as they are not relevant for this example.
-  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-    statusBarColor: Colors.transparent,
-    statusBarIconBrightness: Brightness.dark,
-    systemNavigationBarColor: Colors.white,
-    systemNavigationBarIconBrightness: Brightness.dark,
-    systemNavigationBarDividerColor: Colors.transparent,
-  ));
+  WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -25,12 +19,14 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: Colors.white,
         fontFamily: 'Poppins',
       ),
-      home: HomePage(),
+      home: const HomePage(),
     );
   }
 }
 
 class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -47,7 +43,7 @@ class _HomePageState extends State<HomePage> {
           return ListView(
             padding: EdgeInsets.zero,
             children: <Widget>[
-              SizedBox(height: 100),
+              const SizedBox(height: 100),
 
               // SlimyCard is being called here.
               SlimyCard(
@@ -86,12 +82,12 @@ class _HomePageState extends State<HomePage> {
             ],
           ),
         ),
-        SizedBox(height: 15),
-        Text(
+        const SizedBox(height: 15),
+        const Text(
           'The Rock',
           style: TextStyle(color: Colors.white, fontSize: 20),
         ),
-        SizedBox(height: 15),
+        const SizedBox(height: 15),
         Text(
           'He asks, what your name is. But!',
           style: TextStyle(
@@ -99,14 +95,14 @@ class _HomePageState extends State<HomePage> {
               fontSize: 12,
               fontWeight: FontWeight.w500),
         ),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
       ],
     );
   }
 
   // This widget will be passed as Bottom Card's Widget.
   Widget bottomCardWidget() {
-    return Text(
+    return const Text(
       'It doesn\'t matter \nwhat your name is.',
       style: TextStyle(
         color: Colors.white,

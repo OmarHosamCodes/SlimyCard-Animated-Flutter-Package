@@ -37,7 +37,6 @@ class SlimyCard extends StatefulWidget {
   final void Function()? onTap;
   final Color arrowColor;
   final Color arrowContainerColor;
-  final Color slimeColor;
 
   SlimyCard({
     this.color = const Color(0xff5858FF),
@@ -51,7 +50,6 @@ class SlimyCard extends StatefulWidget {
     this.onTap,
     this.arrowColor = const Color.fromRGBO(0, 0, 0, 1),
     this.arrowContainerColor = const Color.fromRGBO(255, 255, 255, 1),
-    this.slimeColor = const Color(0xff5858FF),
   })  : assert(topCardHeight >= 150, 'Height of Top Card must be atleast 150.'),
         assert(bottomCardHeight >= 100,
             'Height of Bottom Card must be atleast 100.'),
@@ -190,7 +188,7 @@ class _SlimyCardState extends State<SlimyCard> with TickerProviderStateMixin {
                         Container(
                           child: FlareActor(
                             'packages/slimy_card/assets/flare/bottomSlime.flr',
-                            color: widget.slimeColor
+                            color: widget.color
                                 .withOpacity((widget.slimeEnabled) ? 1 : 0),
                             animation: activeAnimation,
                             sizeFromArtboard: true,

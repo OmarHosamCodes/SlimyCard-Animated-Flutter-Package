@@ -43,7 +43,7 @@ class SlimyCard extends StatefulWidget {
     this.width = 300,
     this.topCardHeight = 300,
     this.bottomCardHeight = 150,
-    this.borderRadius = 25,
+    this.borderRadius = 10,
     this.topCardWidget = const Center(),
     this.bottomCardWidget = const Center(),
     this.slimeEnabled = true,
@@ -54,8 +54,8 @@ class SlimyCard extends StatefulWidget {
         assert(bottomCardHeight >= 100,
             'Height of Bottom Card must be atleast 100.'),
         assert(width >= 100, 'Width must be atleast 100.'),
-        assert(borderRadius <= 30 && borderRadius >= 0,
-            'Border Radius must neither exceed 30 nor be negative');
+        assert(borderRadius <= 10 && borderRadius >= 0,
+            'Border Radius must neither exceed 10 nor be negative');
 
   @override
   _SlimyCardState createState() => _SlimyCardState();
@@ -97,7 +97,7 @@ class _SlimyCardState extends State<SlimyCard> with TickerProviderStateMixin {
       gap = gapFinal;
       bottomDimension = finalBottomDimension;
     }
-
+    widget.onTap!.call();
     activeAnimation = (activeAnimation == 'Idle') ? 'Action' : 'Idle';
   }
 
@@ -146,12 +146,7 @@ class _SlimyCardState extends State<SlimyCard> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        setState(() {
-          action();
-        });
-        widget.onTap!.call();
-      },
+      onTap: () => setState(() => action()),
       child: Container(
         child: Stack(
           alignment: Alignment.topCenter,

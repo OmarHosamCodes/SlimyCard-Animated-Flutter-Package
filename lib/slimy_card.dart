@@ -34,7 +34,7 @@ class SlimyCard extends StatefulWidget {
   final Widget topCardWidget;
   final Widget bottomCardWidget;
   final bool slimeEnabled;
-  final Function()? onTap;
+  final void Function()? onTap;
   final Color arrowColor;
   final Color arrowContainerColor;
 
@@ -48,8 +48,8 @@ class SlimyCard extends StatefulWidget {
     this.bottomCardWidget = const Center(),
     this.slimeEnabled = true,
     this.onTap,
-    this.arrowColor = const Color.fromRGBO(0, 0, 0, 1),
-    this.arrowContainerColor = const Color.fromRGBO(255, 255, 255, 1),
+    this.arrowColor = const Color(0xFF000000),
+    this.arrowContainerColor = const Color(0xFFFFFFFF),
   })  : assert(topCardHeight >= 150, 'Height of Top Card must be atleast 150.'),
         assert(bottomCardHeight >= 100,
             'Height of Bottom Card must be atleast 100.'),
@@ -82,7 +82,6 @@ class _SlimyCardState extends State<SlimyCard> with TickerProviderStateMixin {
   /// the cards and vice-versa.
   ///
   /// It also updates the status of the SlimyCard.
-
   void action() {
     if (isSeperated) {
       isSeperated = false;
@@ -97,7 +96,7 @@ class _SlimyCardState extends State<SlimyCard> with TickerProviderStateMixin {
       gap = gapFinal;
       bottomDimension = finalBottomDimension;
     }
-    widget.onTap!.call();
+
     activeAnimation = (activeAnimation == 'Idle') ? 'Action' : 'Idle';
   }
 
@@ -146,7 +145,10 @@ class _SlimyCardState extends State<SlimyCard> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => setState(() => action()),
+      onTap: () {
+        setState(() => action());
+        if (widget.onTap != null) widget.onTap!();
+      },
       child: Container(
         child: Stack(
           alignment: Alignment.topCenter,

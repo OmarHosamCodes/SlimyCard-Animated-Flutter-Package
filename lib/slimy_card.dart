@@ -97,7 +97,7 @@ class _SlimyCardState extends State<SlimyCard> with TickerProviderStateMixin {
       gap = gapFinal;
       bottomDimension = finalBottomDimension;
     }
-    widget.onTap!();
+    widget.onTap!.call();
     activeAnimation = (activeAnimation == 'Idle') ? 'Action' : 'Idle';
   }
 

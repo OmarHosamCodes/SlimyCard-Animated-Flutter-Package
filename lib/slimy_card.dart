@@ -34,7 +34,7 @@ class SlimyCard extends StatefulWidget {
   final Widget topCardWidget;
   final Widget bottomCardWidget;
   final bool slimeEnabled;
-  final void Function()? onTap;
+  final Function()? onTap;
   final Color arrowColor;
   final Color arrowContainerColor;
 
@@ -97,7 +97,7 @@ class _SlimyCardState extends State<SlimyCard> with TickerProviderStateMixin {
       gap = gapFinal;
       bottomDimension = finalBottomDimension;
     }
-    widget.onTap!.call();
+    widget.onTap!();
     activeAnimation = (activeAnimation == 'Idle') ? 'Action' : 'Idle';
   }
 
